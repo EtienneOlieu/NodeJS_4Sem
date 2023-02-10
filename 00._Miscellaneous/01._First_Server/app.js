@@ -30,5 +30,16 @@ app.get("/about", (req, res) => {
     `)
 })
 
+// /bat?adjective=spooky
+app.get("/bat",(req, res) => {
+    res.send({ message: `The bat is ${req.query.adjective}`})
+})
+
+// /bottle/large
+app.get("/bottle/:bottleSize", (req,res) => {
+    req.params
+    res.send({ bottleSize:req.params.bottleSize })
+})
+
 app.listen(8080)
 //fortæller Node hvilken port den skal lytte på. Skal altid ligge i bundengi

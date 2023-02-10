@@ -1,0 +1,7 @@
+Anatomy of URL
+protocol
+  |     domain
+  |     |         endpoint
+  |     |           |              path variable - obligatorisk
+  |     |           |               |       query string
+http://localhost/kickthedinosaur/:id?size=1200
