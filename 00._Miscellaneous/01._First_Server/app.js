@@ -1,5 +1,6 @@
 const express = require("express")
 const app = express()
+app.use(express.json())
 
 // const app = require("express")() - Dette er en alternativ måde at gøre det på.
 
@@ -39,6 +40,11 @@ app.get("/bat",(req, res) => {
 app.get("/bottle/:bottleSize", (req,res) => {
     req.params
     res.send({ bottleSize:req.params.bottleSize })
+})
+
+app.post("/package", (req, res) => {
+    console.log(req.body)
+    res.send({ message: req.body })
 })
 
 app.listen(8080)
