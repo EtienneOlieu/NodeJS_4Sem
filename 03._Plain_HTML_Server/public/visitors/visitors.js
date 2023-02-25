@@ -1,4 +1,4 @@
-fetch('api/visitors')
+fetch("/api/visitors")
     .then(response => response.json())
     .then(result => {
         updateVisitorCount(result.data)
@@ -6,15 +6,15 @@ fetch('api/visitors')
     })
 
 function updateVisitorCount(visitorCount) {
-    const visitorCountDiv = document.getElementById('visitor-count');
+    const visitorCountDiv = document.getElementById("visitor-count");
     visitorCountDiv.innerText = visitorCount;
 }
 
 function writeInVisitorLog(){
-    fetch('api/visitors', {
-        method: 'PUT',
+    fetch("/api/visitors", {
+        method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         }
     })
     .then(response => response.json())

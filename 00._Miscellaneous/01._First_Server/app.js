@@ -47,5 +47,27 @@ app.post("/package", (req, res) => {
     res.send({ message: req.body })
 })
 
+app.get("/time/time", (req, res) => {
+    res.send({ 
+        timeUTC: new Date(),
+        timeLocal: Date(),
+        unixTimestamp: Date.now()
+    });
+})
+
+app.get("/time/day", (req,res) => {
+    const today = new Date().getDay()
+    console.log(today)
+    const options = { weekday: "long" };
+    res.send({
+        date: Intl.DateTimeFormat("da-dk", options).format(today)
+    });
+});
+//gyldige datoer
+
+console.log(new Date())
+console.log(Date())
+console.log(Date.now())
+
 app.listen(8080)
 //fortæller Node hvilken port den skal lytte på. Skal altid ligge i bundengi
