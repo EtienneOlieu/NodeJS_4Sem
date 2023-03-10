@@ -28,7 +28,7 @@ app.get("/museumGuards", (req, res) => {
 //___________API'er HER______________
 
 app.get("/api/tanks", (req, res) => {
-    res.send({ data: tanks });
+    res.send({ data: getTanks });
 });
 
 app.get("/api/guards", (req,res) => {
@@ -42,6 +42,14 @@ app.get("/api/visitors", (req, res) => {
 app.put("/api/visitors", (req, res) => {
     res.send({ data: ++visitorCount })
 });
+
+app.get("/api/guards", (req, res) => {
+    console.log(req.query)
+    if (req.query.passport === 'theskyisblue') {
+        return res.redirect("/api/tanks") //return her i stedet for else i if, for at spare på linjer.
+    }
+        res.send({message: "You are not allowed to see the tanks. Give us the secret password in the query string with key being passport."});
+})
 
 const PORT = 8080
 
