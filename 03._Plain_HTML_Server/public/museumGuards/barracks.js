@@ -1,4 +1,4 @@
-const guards = [
+export const guards = [
     "Hank the tank",
     "Thomas the tank engine",
     "CEPOS"
@@ -10,7 +10,12 @@ function getGuards(){
 }
 */
 
-function addGuard(guard) {
+export function addGuard(guard) {
     guards.push(guard);
     return guards;
-}
+};
+
+export default {
+    guards,
+    addGuard
+};
