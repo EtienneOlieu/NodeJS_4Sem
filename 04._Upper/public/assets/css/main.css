@@ -1,0 +1,18 @@
+body {
+    background-color: palevioletred;
+    font-family: Arial, Helvetica, sans-serif;
+    color: aquamarine;
+    margin: 2em;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#logo {
+    max-width: 5em;
+}
+
+main {
+    /*min-height: 70vh;*/
+    flex: 1;
+}
