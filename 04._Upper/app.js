@@ -1,7 +1,9 @@
 import express from "express";
 const app = express();
 import path from "path";
-//import jokes from "./util/jokes.js";
+import jokes from "./util/jokes.js";
+console.log(await jokes.getJoke())
+
 app.use(express.static("public"));
 
 
@@ -24,8 +26,9 @@ app.get("/quotes", (req ,res) => {
 
 /* --- API --- */
 
-app.get("api/quests", (req, res) => {
-    
+app.get("/api/jokes", (req, res) => {
+    res.send({data: jokes})
+    console.log(jokes.getJoke())
 })
 
 const PORT = 8080

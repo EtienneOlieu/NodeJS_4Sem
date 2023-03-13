@@ -7,14 +7,17 @@ fetch("/api/tanks")
     //avoid XSS!
     result.data.forEach(tank => {
         const tankDiv = document.createElement("div");
+        
         const tankName = document.createElement("p");
+        tankName.innerText = tank.name || "No name";
+       tankDiv.appendChild(tankName);
+
         const tankNationality = document.createElement("p");
+        tankNationality.innerText = tank.nationality || "No nationality";
+        tankDiv.appendChild(tankNationality);
+
         const breakBr = document.createElement("br")
 
-        tankName.innerText = tank.name || "No name";
-        tankNationality.innerText = tank.nationality || "No nationality";
-        tankDiv.appendChild(tankName);
-        tankDiv.appendChild(tankNationality);
         tankDiv.appendChild(breakBr);
         tanksWrapperDiv.appendChild(tankDiv);
     });

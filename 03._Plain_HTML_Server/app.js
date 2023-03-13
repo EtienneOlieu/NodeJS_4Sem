@@ -28,7 +28,7 @@ app.get("/museumGuards", (req, res) => {
 //___________API'er HER______________
 
 app.get("/api/tanks", (req, res) => {
-    res.send({ data: getTanks });
+    res.send({ data: getTanks() });
 });
 
 app.get("/api/guards", (req,res) => {
