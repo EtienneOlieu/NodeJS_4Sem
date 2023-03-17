@@ -1,34 +1,30 @@
 import express from "express";
 const app = express();
-import path from "path";
-//import jokes from "./util/jokes.js";
-import fs from "fs";
-//import jokes from "./util/jokes.js";
-
 app.use(express.static("public"));
+import templateEngine from "./util/templateEngine.js";
 
-/* COMPONENTS */
-const navbar = fs.readFileSync("./public/components/navbar/navbar.html").toString();
-const footer = fs.readFileSync("./public/components/footer/footer.html").toString();
+const frontpage =  templateEngine.readPage("./public/pages/frontpage/frontpage.html");
+const frontpagePage = templateEngine.renderPage(frontpage, {
+    tabTitle: "UPPER | Welcome"
+});
 
-/* PAGES */ 
-const frontpage = fs.readFileSync("./public/pages/frontpage/frontpage.html").toString();
-const jokes = fs.readFileSync("./public/pages/jokes/jokes.html").toString();
-const quests = fs.readFileSync("./public/pages/quests/quests.html").toString();
-const quotes = fs.readFileSync("./public/pages/quotes/quotes.html").toString();
+const quests = templateEngine.readPage("./public/pages/quests/quests.html");
+const questsPage = templateEngine.renderPage(quests, {
+    tabTitle: "UPPER | Quests"
+});
 
-/* CONSTRUCTED PAGES*/
-const frontpagePage = navbar + frontpage + footer;
-const jokesPage = navbar + jokes + footer;
-const questsPage = navbar + quests + footer;
-const quotesPage = navbar + quotes + footer;
+const quotes = templateEngine.readPage("./public/pages/quotes/quotes.html");
+const quotesPage = templateEngine.renderPage(quotes, {
+    tabTitle: "UPPER | Quotes"
+});
 
 //path er en import der ligger native i node. Skal bruges nu hvor hele systemet er et modul. VIGTIGT er IKKE at have en skråstreg foran stiens navn.
 app.get("/", (req, res) => {
     res.send(frontpagePage);
 }); 
 
-app.get("/jokes", (req, res) => {
+app.get("/jokes", async (req, res) => {
+   const jokesPage = await templateEngine.renderJokePage();
     res.send(jokesPage);
 });
 

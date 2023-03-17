@@ -19,6 +19,4 @@ async function getJoke(){
 }
 
 //getJoke();
-export default {
-    getJoke
-};
+export default getJoke;
