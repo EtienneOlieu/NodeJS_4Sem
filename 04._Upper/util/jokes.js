@@ -12,7 +12,7 @@ async function getJoke(){
     const jokeToAnalyze = result.joke || `${result.setup} ${result.delivery}`
     const { score } = sentiment.analyze(jokeToAnalyze);
 
-    if (score < 5){
+    if (score < 0){
         return await getJoke();
     }
     return result;
