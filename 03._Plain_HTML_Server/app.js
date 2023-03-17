@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express")
 const app = express()
 app.use(express.static("public"))
@@ -7,7 +8,7 @@ const  { getTanks, addTank } = require("./util/tanks.js");
 
 let visitorCount = 0;
 
-/* Pages */
+/*___________Pages her______________*/
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/frontpage/frontpage.html")
@@ -25,15 +26,19 @@ app.get("/museumGuards", (req, res) => {
     res.sendFile(__dirname + "/public/museumGuards/museumGuards.html");
 })
 
-//___________API'er HER______________
+app.get("/proxy", (req, res) => {
+    //make a request to https://www.google.com
+    //serve the text
+    fetch("https://www.google.com")
+    .then(response => response.text())
+    .then(result => res.send(result))    
+})
+
+/*___________API'er HER______________*/
 
 app.get("/api/tanks", (req, res) => {
     res.send({ data: getTanks() });
 });
-
-app.get("/api/guards", (req,res) => {
-    res.send({ data: guards});
-})
 
 app.get("/api/visitors", (req, res) => {
     res.send({ data: visitorCount });
