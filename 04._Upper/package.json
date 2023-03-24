@@ -64,7 +64,12 @@
     "vary": "^1.1.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "list-files": "ls",
+    "cross-dev": "cross-env PORT=9090 ENV=DEV nodemon app.js",
+    "cross-prod": "cross-env PORT=80 ENV=PROD node app.js",
+    "dev": "PORT=8080 nodemon app.js",
+    "prod": "PORT=80 node app.js"
   },
   "repository": {
     "type": "git",
@@ -86,5 +91,8 @@
   "bugs": {
     "url": "https://github.com/EtienneOlieu/NodeJS_4Sem/issues"
   },
-  "homepage": "https://github.com/EtienneOlieu/NodeJS_4Sem#readme"
+  "homepage": "https://github.com/EtienneOlieu/NodeJS_4Sem#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }
