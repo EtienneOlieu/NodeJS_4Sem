@@ -1,5 +1,5 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 app.use(express.json())
 
 // const app = require("express")() - Dette er en alternativ måde at gøre det på.

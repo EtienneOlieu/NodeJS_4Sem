@@ -56,6 +56,17 @@ app.get("/api/guards", (req, res) => {
         res.send({message: "You are not allowed to see the tanks. Give us the secret password in the query string with key being passport."});
 })
 
+app.post("/login", (req, res) => {
+    const loginName = req.body.username;
+    const loginPassword = req.body.password;
+    const validatedUser = users.find(user => user.username === loginName && user.password === loginPassword);
+    if (validatedUser) {
+        res.redirect("/admin");
+    } else {
+        res.redirect("/login/fail");
+    }
+});
+
 const PORT = 8080
 
 app.listen(PORT, (error) => {

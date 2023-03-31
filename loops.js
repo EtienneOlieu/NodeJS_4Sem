@@ -1,11 +1,38 @@
-const rocks = [
+/* const rocks = [
     {name: 'Pet rock', age: 2 },
     {name : 'Led Zeppelin', age: 50},
     {name : 'Dwayne Johnson', age: 47},
     {name : 'Neptune', age: 100_000_000_000}   
 ]
+ */
+const horses = [
+    {name: 'Flash', racesRun: 4},
+    {name: 'goldenDelicious', racesRun: 12},
+    {name: 'Boogityboo', racesRun: 1},
+    {name: 'DanceMcGradle', racesRun: 8},
+];
 
-//assignment return rocks three that have even numbered ages
+const plusOneRace = (horses.forEach(horse => horse.racesRun ++))
+console.log(horses)
+
+const plusOneRaceAlt = (horses.map(horse => {
+    horse.racesRun ++;
+    return horse;
+}));
+
+console.log(plusOneRaceAlt)
+
+console.log(horses)
+
+const plusOneRaceSansSideEffects = (horses.map(horse => ({ ... horse, racesRun: horse.racesRun+1})));
+console.log(plusOneRaceSansSideEffects);
+
+console.log(horses);
+
+
+
+
+/* //assignment return rocks three that have even numbered ages
 
 const evenAgedRocks =  rocks.filter(rock => rock.age %2 === 0)
 console.log(evenAgedRocks)
@@ -39,4 +66,4 @@ const rocksAgedOneYearAlt2 = rocks.map(rock => (
     }
 ))
 
-console.log(rocksAgedOneYearAlt1)
+console.log(rocksAgedOneYearAlt1) */
