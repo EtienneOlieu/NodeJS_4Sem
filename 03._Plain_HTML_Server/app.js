@@ -2,6 +2,8 @@ const { response } = require("express");
 const express = require("express")
 const app = express()
 app.use(express.static("public"))
+import router from "./routers/guardsRouter.js"
+app.use 
 
 const  { getTanks, addTank } = require("./util/tanks.js");
 //const {getTanks, addTank} = tanksUtil.getTanks();
@@ -14,14 +16,13 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/frontpage/frontpage.html")
 });
 
-app.get("/visitors", (req, res) => {
-    res.sendFile(__dirname + "/public/visitors/visitors.html");
-});
-
 app.get("/tanks", (req, res) => {
     res.sendFile(__dirname + "/public/tanks/tanks.html")
 });
 
+app.get("/visitors", (req, res) => {
+    res.sendFile(__dirname + "/public/visitors/visitors.html");
+});
 app.get("/museumGuards", (req, res) => {
     res.sendFile(__dirname + "/public/museumGuards/museumGuards.html");
 })
@@ -36,25 +37,10 @@ app.get("/proxy", (req, res) => {
 
 /*___________API'er HER______________*/
 
-app.get("/api/tanks", (req, res) => {
-    res.send({ data: getTanks() });
-});
 
-app.get("/api/visitors", (req, res) => {
-    res.send({ data: visitorCount });
-});
 
-app.put("/api/visitors", (req, res) => {
-    res.send({ data: ++visitorCount })
-});
 
-app.get("/api/guards", (req, res) => {
-    console.log(req.query)
-    if (req.query.passport === 'theskyisblue') {
-        return res.redirect("/api/tanks") //return her i stedet for else i if, for at spare på linjer.
-    }
-        res.send({message: "You are not allowed to see the tanks. Give us the secret password in the query string with key being passport."});
-})
+
 
 app.post("/login", (req, res) => {
     const loginName = req.body.username;

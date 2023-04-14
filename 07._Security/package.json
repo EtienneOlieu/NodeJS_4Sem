@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express-rate-limit": "^6.7.0",
+    "helmet": "^6.1.5"
   }
 }
