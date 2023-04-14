@@ -6,9 +6,6 @@ console.log(process.env.TEST);
 import express from "express";
 const app = express();
 
-import gothamRouter from "./routers/gothamRouter.js";
-app.use(gothamRouter);
-
 import path from "path";
 app.use(express.static(path.resolve("../06._svelte-family/dist")));
 
@@ -34,13 +31,24 @@ import rateLimit from 'express-rate-limit'
 
 const apiLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 10, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 app.use(apiLimiter);
 
-// eskempel på string der kan godtages hernede: /gotham/:batman?hobby=Beating the poor
+app.use("/auth", rateLimit({ //Dette er en auth ratelimiter, der kun andvendes ved auth endpoint
+    windowMs: 15 * 60 * 1000, 
+	max: 4, 
+	standardHeaders: true, 
+	legacyHeaders: false,
+}))
+
+import authRouter from "./routers/authRouter.js"
+app.use(authRouter);
+
+import gothamRouter from "./routers/gothamRouter.js";
+app.use(gothamRouter);
 
 app.get("/piblings", (req, res) => {
     res.send({data: ["John", "Mark"]});
