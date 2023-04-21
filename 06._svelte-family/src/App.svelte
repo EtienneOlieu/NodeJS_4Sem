@@ -6,7 +6,7 @@
     import Home from "./components/Home/Home.svelte";
     import Pibling from "./components/Pibling/Pibling.svelte";
 
-    onMount(async () => {
+    onMount(async () => { //onMount er til hvis noget skal gøres kun én gang
       const registerURL = `${$BASE_URL}/gotham/batman?hobby=catching the bad guys.`;
       const registerResponse = await fetch(registerURL, { 
         credentials: "include"
